@@ -18,11 +18,19 @@ export class DeseosService {
 
 
 
-  crearLista(titulo: string){
+  crearLista(titulo: string): number{
 
     const newList = new Lista( titulo );
     this.listas.push( newList );
     this.guardarStorage();
+
+    return newList.id;
+  }
+
+  obtenerLista( id: string | number ) : Lista {
+
+    id = Number(id);
+    return this.listas.find( lista => lista.id === id );
   }
 
   guardarStorage() {

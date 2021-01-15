@@ -46,13 +46,14 @@ export class Tab1Page {
             if( data.titulo.length < 2 ){ return }
 
             //crear la lista
-            this.deseoSvc.crearLista(data.titulo);
+            const listaId = this.deseoSvc.crearLista(data.titulo);
+
+            this.router.navigateByUrl(`/tabs/tab1/agregar/${ listaId }`);
           }
         }
       ]
     });
 
     alert.present();
-    // this.router.navigateByUrl('/tabs/tab1/agregar')
   }
 }
