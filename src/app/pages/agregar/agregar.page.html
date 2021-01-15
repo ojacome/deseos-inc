@@ -1,8 +1,8 @@
-<ion-header class="ion-no-border" >
+<ion-header class="ion-no-border">
   <ion-toolbar color="dark">
 
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/" color="tertiary" ></ion-back-button>
+      <ion-back-button defaultHref="/" color="tertiary"></ion-back-button>
     </ion-buttons>
 
     <ion-title>{{ lista.titulo }}</ion-title>
@@ -23,14 +23,24 @@
       <ion-label>Tareas por hacer</ion-label>
     </ion-list-header>
 
-    <ion-item color="dark" *ngFor="let item of lista.items">
-      <ion-label>{{ item.desc }}</ion-label>
-      <ion-checkbox 
-      color="tertiary" 
-      slot="start"
-      [(ngModel)]="item.completado">      
-      </ion-checkbox>
-    </ion-item>
+    <!-- Sliding item with text options on both sides -->
+    <ion-item-sliding *ngFor="let item of lista.items; let i = index" 
+    class="animated fadeInDown">
+
+      <ion-item color="dark" >
+        <ion-label>{{ item.desc }}</ion-label>
+        <ion-checkbox color="tertiary" slot="start" (ionChange)="cambioCheck( item )" [(ngModel)]="item.completado">
+        </ion-checkbox>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option (click)="borrar( i )" color="danger">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
   </ion-list>
 
 </ion-content>
