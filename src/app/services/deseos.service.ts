@@ -38,6 +38,16 @@ export class DeseosService {
     this.guardarStorage();
   }
 
+  editarLista( lista: Lista ){
+    this.listas.find( listaData => {
+      if(listaData.id === lista.id){
+        listaData = lista;
+      }
+    });
+  
+    this.guardarStorage();
+  }
+
   guardarStorage() {
 
     localStorage.setItem('data', JSON.stringify( this.listas ) );
